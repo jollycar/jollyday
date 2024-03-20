@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.jollyday</groupId>
+    <groupId>org.jollycar</groupId>
     <artifactId>jollyday</artifactId>
     <name>Jollyday</name>
     <version>0.5.11-SNAPSHOT</version>
@@ -83,17 +83,7 @@
             </roles>
         </developer>
     </developers>
-    <issueManagement>
-        <system>Sourceforge</system>
-        <url>http://sourceforge.net/tracker/?group_id=299729&amp;atid=1264280</url>
-    </issueManagement>
     <inceptionYear>18.01.2010</inceptionYear>
-    <scm>
-        <connection>scm:git:git://github.com/svendiedrichsen/jollyday.git</connection>
-        <developerConnection>scm:git:git@github.com:svendiedrichsen/jollyday.git</developerConnection>
-        <url>https://github.com/svendiedrichsen/jollyday.git</url>
-        <tag>HEAD</tag>
-    </scm>
     <build>
         <pluginManagement>
             <plugins>
@@ -173,7 +163,7 @@
                     <version>0.8.7</version>
                     <configuration>
                         <excludes>
-                            <exclude>de.jollyday.config.*</exclude>
+                            <exclude>org.jollycar.config.*</exclude>
                         </excludes>
                     </configuration>
                 </plugin>
@@ -210,7 +200,7 @@
                                 <argument>-d</argument>
                                 <argument>${project.build.directory}/generated-sources/jaxb</argument>
                                 <argument>-p</argument>
-                                <argument>de.jollyday.config</argument>
+                                <argument>org.jollycar.config</argument>
                                 <argument>${project.basedir}/src/main/xsd/Holiday.xsd</argument>
                             </arguments>
                         </configuration>
@@ -272,7 +262,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
-                    <excludePackageNames>de.jollyday.config</excludePackageNames>
+                    <excludePackageNames>org.jollycar.config</excludePackageNames>
                     <sourceFileExcludes>module-info.java</sourceFileExcludes>
                 </configuration>
                 <executions>
@@ -369,11 +359,11 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <argLine>@{argLine}
-                                     --add-opens de.jollyday/de.jollyday.config=jakarta.xml.bind
-                                     --add-opens de.jollyday/de.jollyday.configuration=ALL-UNNAMED
-                                     --add-opens de.jollyday/de.jollyday.datasource.impl=ALL-UNNAMED
-                                     --add-opens de.jollyday/de.jollyday.util=ALL-UNNAMED
-                                     --add-opens de.jollyday/holidays=ALL-UNNAMED</argLine>
+                                     --add-opens org.jollycar/org.jollycar.config=jakarta.xml.bind
+                                     --add-opens org.jollycar/org.jollycar.configuration=ALL-UNNAMED
+                                     --add-opens org.jollycar/org.jollycar.datasource.impl=ALL-UNNAMED
+                                     --add-opens org.jollycar/org.jollycar.util=ALL-UNNAMED
+                                     --add-opens org.jollycar/holidays=ALL-UNNAMED</argLine>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.basedir}/src/main/resources</additionalClasspathElement>
                             </additionalClasspathElements>

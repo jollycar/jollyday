@@ -3,16 +3,16 @@ API properties
   The general API configuration resides within the <<<jollyday.properties>>> file contained
   in the provided jar file. You have two options to overload these properties.
   
-  You can specify a comma separated list of URLs with the system property <<<de.jollyday.config.urls>>>
+  You can specify a comma separated list of URLs with the system property <<<org.jollycar.config.urls>>>
   which point to properties files to overload the basic properties.
   
-  Example: <<<-Dde.jollyday.config.urls=file:/some/path/new.properties,http://myserver/some/path/further.properties,jar:file:myLibrary.jar!/my.properties>>>
+  Example: <<<-Dorg.jollycar.config.urls=file:/some/path/new.properties,http://myserver/some/path/further.properties,jar:file:myLibrary.jar!/my.properties>>>
   
   You can specify a comma separated list of classes which implement the ConfigurationProvider interface
-  with the system property <<<de.jollyday.config.providers>>>. This will overload the basic and the
+  with the system property <<<org.jollycar.config.providers>>>. This will overload the basic and the
   URL specified properties.
   
-  Example: <<<-Dde.jollyday.config.providers=some.package.name.MyConfigurationProvider,some.other.package.AnotherConfigurationProvider>>>
+  Example: <<<-Dorg.jollycar.config.providers=some.package.name.MyConfigurationProvider,some.other.package.AnotherConfigurationProvider>>>
   
   You can do both where each will overload the other. The order of loading properties is Base, URLs and
   ConfigurationProvider. 
@@ -24,15 +24,15 @@ API properties
   used for the specific country the Manager is created for.
   
 --------
-manager.impl=de.jollyday.impl.DefaultHolidayManager
+manager.impl=impl.org.jollycar.DefaultHolidayManager
 --------
 
   This configuration defines an Manager implementation class used as a default for
   every country. You can define a Manager implementation on a per country base.
 	
 --------
-manager.impl=de.jollyday.impl.DefaultHolidayManager
-manager.impl.us=de.jollyday.impl.MyXMLManager
+manager.impl=impl.org.jollycar.DefaultHolidayManager
+manager.impl.us=org.jollycar.impl.MyXMLManager
 --------
 	
   This will let the MyXMLManager class be used for calculating US holidays and the
@@ -44,13 +44,13 @@ manager.impl.us=de.jollyday.impl.MyXMLManager
   configured depending on the class to parse the info from.
   
 --------
-parser.impl.de.jollyday.config.Fixed=de.jollyday.parser.impl.FixedParser
-parser.impl.de.jollyday.config.FixedWeekdayInMonth=de.jollyday.parser.impl.FixedWeekdayInMonthParser
-parser.impl.de.jollyday.config.IslamicHoliday=de.jollyday.parser.impl.IslamicHolidayParser
-parser.impl.de.jollyday.config.ChristianHoliday=de.jollyday.parser.impl.ChristianHolidayParser
-parser.impl.de.jollyday.config.RelativeToFixed=de.jollyday.parser.impl.RelativeToFixedParser
-parser.impl.de.jollyday.config.RelativeToWeekdayInMonth=de.jollyday.parser.impl.RelativeToWeekdayInMonthParser
-parser.impl.de.jollyday.config.FixedWeekdayBetweenFixed=de.jollyday.parser.impl.FixedWeekdayBetweenFixedParser
+parser.impl.org.jollycar.config.Fixed=impl.parser.org.jollycar.FixedParser
+parser.impl.org.jollycar.config.FixedWeekdayInMonth=impl.parser.org.jollycar.FixedWeekdayInMonthParser
+parser.impl.org.jollycar.config.IslamicHoliday=impl.parser.org.jollycar.IslamicHolidayParser
+parser.impl.org.jollycar.config.ChristianHoliday=impl.parser.org.jollycar.ChristianHolidayParser
+parser.impl.org.jollycar.config.RelativeToFixed=impl.parser.org.jollycar.RelativeToFixedParser
+parser.impl.org.jollycar.config.RelativeToWeekdayInMonth=impl.parser.org.jollycar.RelativeToWeekdayInMonthParser
+parser.impl.org.jollycar.config.FixedWeekdayBetweenFixed=impl.parser.org.jollycar.FixedWeekdayBetweenFixedParser
 --------
 	
   The configuration property name starts with <<<parser.impl>>> and finishes with the XML class
@@ -105,4 +105,3 @@ XML Configuration
   -SNIP-
 </tns:Configuration>
 ----------------------- 
-  
