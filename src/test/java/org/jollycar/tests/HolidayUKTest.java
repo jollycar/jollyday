@@ -27,28 +27,28 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HolidayUKTest extends AbstractCountryTestBase {
+class HolidayUKTest extends AbstractCountryTestBase {
 
 	private static final int YEAR = 2010;
 	private static final String ISO_CODE = "gb";
 
 	@Test
-	public void testManagerUKStructure() throws Exception {
+	void testManagerUKStructure() throws Exception {
 		validateCalendarData(ISO_CODE, YEAR);
 	}
 
 	@Test
-	public void testManagerUKChristmasMovingDaysWhenChristimasOnSunday(){
+	void testManagerUKChristmasMovingDaysWhenChristimasOnSunday(){
 		doChristmasContainmentTest(2011, 26, 27);
 	}
 
 	@Test
-	public void testManagerUKChristmasMovingDaysWhenChristimasOnSaturday(){
+	void testManagerUKChristmasMovingDaysWhenChristimasOnSaturday(){
 		doChristmasContainmentTest(2010, 27, 28);
 	}
 
 	@Test
-	public void testManagerUKChristmasMovingDaysWhenChristimasOnFriday(){
+	void testManagerUKChristmasMovingDaysWhenChristimasOnFriday(){
 		doChristmasContainmentTest(2009, 25, 28);
 	}
 

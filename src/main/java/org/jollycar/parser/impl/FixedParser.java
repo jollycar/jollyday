@@ -15,14 +15,14 @@
  */
 package org.jollycar.parser.impl;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import org.jollycar.Holiday;
 import org.jollycar.HolidayType;
 import org.jollycar.config.Fixed;
 import org.jollycar.config.Holidays;
 import org.jollycar.parser.AbstractHolidayParser;
+
+import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * The Class FixedParser. Parses a fixed date

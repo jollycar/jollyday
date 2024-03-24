@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class ConfigurationProviderManagerTest {
+class ConfigurationProviderManagerTest {
 
 	@Mock
 	ConfigurationProvider defaultConfigurationProvider;
@@ -27,26 +27,26 @@ public class ConfigurationProviderManagerTest {
 	ManagerParameter managerParameter = ManagerParameters.create((String)null);
 
 	@AfterEach
-	public void teardown() {
+	void teardown() {
 		System.clearProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY);
 	}
 
 	@Test
-	public void testGetPropertiesWithEmptyProvidersList() {
+	void testGetPropertiesWithEmptyProvidersList() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, "");
 		configurationProviderManager.mergeConfigurationProperties(managerParameter);
 		assertResult(managerParameter);
 	}
 
 	@Test
-	public void testGetPropertiesWithWrongClass() {
+	void testGetPropertiesWithWrongClass() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, "java.lang.String");
 		configurationProviderManager.mergeConfigurationProperties(managerParameter);
 		assertResult(managerParameter);
 	}
 
 	@Test
-	public void testGetPropertiesWithCorrectClass() {
+	void testGetPropertiesWithCorrectClass() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, getClass().getPackage().getName()
 				+ ".TestProvider");
 		configurationProviderManager.mergeConfigurationProperties(managerParameter);
@@ -55,7 +55,7 @@ public class ConfigurationProviderManagerTest {
 	}
 
 	@Test
-	public void testGetPropertiesWithWrongAndCorrectClass() {
+	void testGetPropertiesWithWrongAndCorrectClass() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, getClass().getPackage().getName()
 				+ ".TestProvider,java.lang.String");
 		configurationProviderManager.mergeConfigurationProperties(managerParameter);
@@ -64,7 +64,7 @@ public class ConfigurationProviderManagerTest {
 	}
 
 	@Test
-	public void testGetPropertiesWithManualOverride() {
+	void testGetPropertiesWithManualOverride() {
 		managerParameter.setProperty("MANUAL_KEY", "MANUAL_VALUE");
 		managerParameter.setProperty("manager.impl", "NewImpl");
 

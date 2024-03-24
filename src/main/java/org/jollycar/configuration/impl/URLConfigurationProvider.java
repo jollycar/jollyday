@@ -15,13 +15,13 @@
  */
 package org.jollycar.configuration.impl;
 
+import org.jollycar.configuration.ConfigurationProvider;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.jollycar.configuration.ConfigurationProvider;
 
 /**
  * An {@link ConfigurationProvider} implementation which reads a list of URLs

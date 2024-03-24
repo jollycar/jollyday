@@ -21,16 +21,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * The Class ISOCodesTest.
  *
  * @author Sven
  */
-public class ISOCodesTest {
+class ISOCodesTest {
 
 	private static final int NUMBER_OF_ISOCOUNTRIES = 248;
 
@@ -42,7 +49,7 @@ public class ISOCodesTest {
 	 * Inits
 	 */
 	@BeforeEach
-	public void init() {
+	void init() {
 		defaultLocale = Locale.getDefault();
 		Locale.setDefault(Locale.ENGLISH);
 		resourceUtil = new ResourceUtil();
@@ -52,7 +59,7 @@ public class ISOCodesTest {
 	 * Cleanup.
 	 */
 	@AfterEach
-	public void cleanup() {
+	void cleanup() {
 		Locale.setDefault(defaultLocale);
 	}
 
@@ -60,7 +67,7 @@ public class ISOCodesTest {
 	 * Test iso codes.
 	 */
 	@Test
-	public void testISOCodes() {
+	void testISOCodes() {
 		Locale.setDefault(defaultLocale);
 		Set<String> isoCodes = resourceUtil.getISOCodes();
 		assertNotNull(isoCodes);
@@ -71,7 +78,7 @@ public class ISOCodesTest {
 	 * Test iso codes.
 	 */
 	@Test
-	public void testISOCodesEN() {
+	void testISOCodesEN() {
 		Set<String> isoCodes = resourceUtil.getISOCodes();
 		assertNotNull(isoCodes);
 		assertEquals(NUMBER_OF_ISOCOUNTRIES, isoCodes.size(), "Wrong number of ISO codes.");
@@ -81,7 +88,7 @@ public class ISOCodesTest {
 	 * Test iso codes.
 	 */
 	@Test
-	public void testISOCodesDE() {
+	void testISOCodesDE() {
 		Locale.setDefault(Locale.GERMANY);
 		Set<String> isoCodes = resourceUtil.getISOCodes();
 		assertNotNull(isoCodes);
@@ -95,7 +102,7 @@ public class ISOCodesTest {
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void testISOCodesCompareENWithDE() throws IOException {
+	void testISOCodesCompareENWithDE() throws IOException {
 		ResourceBundle en = load(Locale.ENGLISH);
 		ResourceBundle de = load(Locale.GERMANY);
 		compareL1WithL2(en, de);

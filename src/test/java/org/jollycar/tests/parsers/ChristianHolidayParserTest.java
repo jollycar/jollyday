@@ -16,7 +16,11 @@
 package org.jollycar.tests.parsers;
 
 import org.jollycar.Holiday;
-import org.jollycar.config.*;
+import org.jollycar.config.ChristianHoliday;
+import org.jollycar.config.ChristianHolidayType;
+import org.jollycar.config.ChronologyType;
+import org.jollycar.config.Holidays;
+import org.jollycar.config.RelativeToEasterSunday;
 import org.jollycar.parser.AbstractHolidayParser;
 import org.jollycar.parser.impl.ChristianHolidayParser;
 import org.jollycar.parser.impl.RelativeToEasterSundayParser;
@@ -24,18 +28,22 @@ import org.jollycar.util.CalendarUtil;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ChristianHolidayParserTest {
+class ChristianHolidayParserTest {
 
 	private AbstractHolidayParser hp = new ChristianHolidayParser();
 	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
-	public void testEmpty() {
+	void testEmpty() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		hp.parse(2010, holidays, config);
@@ -43,7 +51,7 @@ public class ChristianHolidayParserTest {
 	}
 
 	@Test
-	public void testEaster() {
+	void testEaster() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = createConfig(ChristianHolidayType.EASTER);
 		hp.parse(2011, holidays, config);
@@ -54,7 +62,7 @@ public class ChristianHolidayParserTest {
 	}
 
 	@Test
-	public void testChristianInvalidDate() {
+	void testChristianInvalidDate() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = createConfig(ChristianHolidayType.EASTER);
 		config.getChristianHoliday().get(0).setValidTo(2010);
@@ -63,7 +71,7 @@ public class ChristianHolidayParserTest {
 	}
 
 	@Test
-	public void testRelativeToEasterSunday() {
+	void testRelativeToEasterSunday() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = createConfig(1);
 		RelativeToEasterSundayParser p = new RelativeToEasterSundayParser();
@@ -75,7 +83,7 @@ public class ChristianHolidayParserTest {
 	}
 
 	@Test
-	public void testChristianDates() {
+	void testChristianDates() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = createConfig(ChristianHolidayType.EASTER, ChristianHolidayType.CLEAN_MONDAY,
 				ChristianHolidayType.EASTER_SATURDAY, ChristianHolidayType.EASTER_TUESDAY,
@@ -104,7 +112,7 @@ public class ChristianHolidayParserTest {
 	}
 
 	@Test
-	public void testCustomPropertiesKey() {
+	void testCustomPropertiesKey() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = createConfig(ChristianHolidayType.EASTER_TUESDAY);
 		config.getChristianHoliday().get(0).setDescriptionPropertiesKey("CUSTOM_KEY");

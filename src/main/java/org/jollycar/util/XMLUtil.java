@@ -18,16 +18,16 @@
  */
 package org.jollycar.util;
 
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 import org.jollycar.HolidayType;
 import org.jollycar.config.Configuration;
 import org.jollycar.config.Month;
 import org.jollycar.config.ObjectFactory;
 import org.jollycar.config.Weekday;
 
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBElement;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Unmarshaller;
 import java.io.InputStream;
 import java.time.DayOfWeek;
 import java.util.logging.Logger;

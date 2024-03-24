@@ -15,7 +15,9 @@
  */
 package org.jollycar.tests;
 
-import org.jollycar.*;
+import org.jollycar.Holiday;
+import org.jollycar.HolidayCalendar;
+import org.jollycar.HolidayManager;
 import org.jollycar.tests.base.AbstractCountryTestBase;
 import org.jollycar.util.CalendarUtil;
 import org.junit.jupiter.api.Test;
@@ -26,29 +28,32 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-public class HolidayXKTest extends AbstractCountryTestBase {
+class HolidayXKTest extends AbstractCountryTestBase {
 
     private static final String ISO_CODE = "xk";
 
     private CalendarUtil calendarUtil = new CalendarUtil();
 
     @Test
-    public void testManagerXKStructure2021() {
+    void testManagerXKStructure2021() {
         validateCalendarData(ISO_CODE, 2021);
     }
     @Test
-    public void testManagerXKStructure2022() {
+    void testManagerXKStructure2022() {
         validateCalendarData(ISO_CODE, 2022);
     }
     @Test
-    public void testManagerXKStructure2023() {
+    void testManagerXKStructure2023() {
         validateCalendarData(ISO_CODE, 2023);
     }
 
     @Test
-    public void testManagerXKInterval() {
+    void testManagerXKInterval() {
         HolidayManager instance = HolidayManager.getInstance(HolidayCalendar.KOSOVO);
         Set<Holiday> holidays = instance.getHolidays(calendarUtil.create(2010, 6, 1),
                 calendarUtil.create(2011, 5, 31));
@@ -77,7 +82,7 @@ public class HolidayXKTest extends AbstractCountryTestBase {
     }
 
     @Test
-    public void testManagerDifferentInstance() {
+    void testManagerDifferentInstance() {
         Locale defaultLocale = Locale.getDefault();
         Locale.setDefault(Locale.US);
         try {

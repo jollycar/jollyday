@@ -15,14 +15,14 @@
  */
 package org.jollycar.tests.parsers;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.jollycar.Holiday;
 import org.jollycar.config.FixedWeekdayInMonth;
 import org.jollycar.config.Holidays;
 import org.jollycar.parser.impl.FixedWeekdayInMonthParser;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -31,12 +31,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author svdi1de
  *
  */
-public class FixedWeekdayInMonthParserTest {
+class FixedWeekdayInMonthParserTest {
 
 	private FixedWeekdayInMonthParser parser = new FixedWeekdayInMonthParser();
 
 	@Test
-	public void testEmpty() {
+	void testEmpty() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		parser.parse(2010, holidays, config);
@@ -44,7 +44,7 @@ public class FixedWeekdayInMonthParserTest {
 	}
 
 	@Test
-	public void testInvalid() {
+	void testInvalid() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayInMonth e = new FixedWeekdayInMonth();

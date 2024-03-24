@@ -15,12 +15,12 @@
  */
 package org.jollycar.parser.impl;
 
-import java.util.Set;
-
 import org.jollycar.Holiday;
 import org.jollycar.config.HinduHoliday;
 import org.jollycar.config.Holidays;
 import org.jollycar.parser.AbstractHolidayParser;
+
+import java.util.Set;
 
 /**
  * <p>HinduHolidayParser class.</p>

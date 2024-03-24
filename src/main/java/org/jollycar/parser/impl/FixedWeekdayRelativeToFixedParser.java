@@ -15,7 +15,13 @@
  */
 package org.jollycar.parser.impl;
 
-import static java.time.temporal.TemporalAdjusters.*;
+import org.jollycar.Holiday;
+import org.jollycar.HolidayType;
+import org.jollycar.config.FixedWeekdayRelativeToFixed;
+import org.jollycar.config.Holidays;
+import org.jollycar.config.When;
+import org.jollycar.parser.AbstractHolidayParser;
+import org.threeten.extra.Days;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -23,14 +29,10 @@ import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjuster;
 import java.util.Set;
 
-import org.threeten.extra.Days;
-
-import org.jollycar.Holiday;
-import org.jollycar.HolidayType;
-import org.jollycar.config.FixedWeekdayRelativeToFixed;
-import org.jollycar.config.Holidays;
-import org.jollycar.config.When;
-import org.jollycar.parser.AbstractHolidayParser;
+import static java.time.temporal.TemporalAdjusters.next;
+import static java.time.temporal.TemporalAdjusters.nextOrSame;
+import static java.time.temporal.TemporalAdjusters.previous;
+import static java.time.temporal.TemporalAdjusters.previousOrSame;
 
 /**
  * Parses fixed weekday relative to fixed date.

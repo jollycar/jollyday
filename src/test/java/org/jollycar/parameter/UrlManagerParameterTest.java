@@ -9,30 +9,30 @@ import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UrlManagerParameterTest {
+class UrlManagerParameterTest {
 
 	private UrlManagerParameter urlManagerParameter;
 	private URL url;
 
 	@BeforeEach
-	public void setup() throws MalformedURLException{
+	void setup() throws MalformedURLException{
 		url = new URL("http://www.google.de");
 		Properties properties = new Properties();
 		urlManagerParameter = new UrlManagerParameter(url, properties);
 	}
 
 	@Test
-	public void testCreateCacheKey() {
+	void testCreateCacheKey() {
 		assertEquals("http://www.google.de", urlManagerParameter.createCacheKey(), "Unexpected cache key.");
 	}
 
 	@Test
-	public void testGetDisplayName() {
+	void testGetDisplayName() {
 		assertEquals("http://www.google.de", urlManagerParameter.getDisplayName(), "Unexpected display name.");
 	}
 
 	@Test
-	public void testCreateResourceUrl() {
+	void testCreateResourceUrl() {
 		assertEquals(url, urlManagerParameter.createResourceUrl(), "Unexpected url.");
 	}
 

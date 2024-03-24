@@ -15,6 +15,10 @@
  */
 package org.jollycar.util;
 
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 import org.jollycar.config.Configuration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,20 +26,19 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBElement;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class XMLUtilTest {
+class XMLUtilTest {
 
 	@Mock
 	XMLUtil.JAXBContextCreator contextCreator;
@@ -46,12 +49,12 @@ public class XMLUtilTest {
 	XMLUtil xmlUtil = new XMLUtil();
 
 	@Test
-	public void testUnmarshallConfigurationNullCheck() {
+	void testUnmarshallConfigurationNullCheck() {
 		assertThrows(IllegalArgumentException.class, () -> xmlUtil.unmarshallConfiguration(null));
 	}
 
 	@Test
-	public void testUnmarshallConfigurationException() throws IOException, JAXBException {
+	void testUnmarshallConfigurationException() throws IOException, JAXBException {
 		when(contextCreator.create(eq(XMLUtil.PACKAGE), any(ClassLoader.class))).thenThrow(new JAXBException(""))
 				.thenThrow(new JAXBException(""));
 		assertThrows(IllegalStateException.class, () -> xmlUtil.unmarshallConfiguration(inputStream));
@@ -59,7 +62,7 @@ public class XMLUtilTest {
 	}
 
 	@Test
-	public void testUnmarshallConfiguration() throws IOException, JAXBException {
+	void testUnmarshallConfiguration() throws IOException, JAXBException {
 		JAXBContext ctx = mock(JAXBContext.class);
 		Unmarshaller unmarshaller = mock(Unmarshaller.class);
 		@SuppressWarnings("unchecked")

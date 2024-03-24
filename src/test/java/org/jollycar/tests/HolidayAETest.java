@@ -1,8 +1,5 @@
 package org.jollycar.tests;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import org.jollycar.Holiday;
 import org.jollycar.HolidayCalendar;
 import org.jollycar.HolidayManager;
@@ -11,17 +8,20 @@ import org.jollycar.tests.base.AbstractCountryTestBase;
 import org.jollycar.util.CalendarUtil;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HolidayAETest extends AbstractCountryTestBase {
+class HolidayAETest extends AbstractCountryTestBase {
 
 	private static final int YEAR = 2019;
 
 	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
-	public void testNumberOfHolidays() throws Exception {
+	void testNumberOfHolidays() throws Exception {
 		HolidayManager holidayManager = HolidayManager
 				.getInstance(ManagerParameters.create(HolidayCalendar.UNITED_ARAB_EMIRATES));
 		Set<Holiday> holidays = holidayManager.getHolidays(YEAR);
@@ -29,7 +29,7 @@ public class HolidayAETest extends AbstractCountryTestBase {
 	}
 
 	@Test
-	public void testRamadanEnd() throws Exception {
+	void testRamadanEnd() throws Exception {
 		LocalDate expected = calendarUtil.create(YEAR, 6, 3);
 		HolidayManager holidayManager = HolidayManager
 				.getInstance(ManagerParameters.create(HolidayCalendar.UNITED_ARAB_EMIRATES));

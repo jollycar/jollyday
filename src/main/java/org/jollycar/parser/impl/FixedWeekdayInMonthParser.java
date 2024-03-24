@@ -15,19 +15,19 @@
  */
 package org.jollycar.parser.impl;
 
-import static java.time.temporal.TemporalAdjusters.dayOfWeekInMonth;
-import static java.time.temporal.TemporalAdjusters.lastInMonth;
-
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.util.Set;
-
 import org.jollycar.Holiday;
 import org.jollycar.HolidayType;
 import org.jollycar.config.FixedWeekdayInMonth;
 import org.jollycar.config.Holidays;
 import org.jollycar.config.Which;
 import org.jollycar.parser.AbstractHolidayParser;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.Set;
+
+import static java.time.temporal.TemporalAdjusters.dayOfWeekInMonth;
+import static java.time.temporal.TemporalAdjusters.lastInMonth;
 
 /**
  * The Class FixedWeekdayInMonthParser.

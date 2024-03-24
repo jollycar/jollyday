@@ -16,7 +16,13 @@
 package org.jollycar.tests.parsers;
 
 import org.jollycar.Holiday;
-import org.jollycar.config.*;
+import org.jollycar.config.FixedWeekdayInMonth;
+import org.jollycar.config.Holidays;
+import org.jollycar.config.Month;
+import org.jollycar.config.RelativeToWeekdayInMonth;
+import org.jollycar.config.Weekday;
+import org.jollycar.config.When;
+import org.jollycar.config.Which;
 import org.jollycar.parser.impl.RelativeToWeekdayInMonthParser;
 import org.jollycar.util.CalendarUtil;
 import org.junit.jupiter.api.Test;
@@ -31,13 +37,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author svdi1de
  *
  */
-public class RelativeToWeekdayInMonthParserTest {
+class RelativeToWeekdayInMonthParserTest {
 
 	private RelativeToWeekdayInMonthParser rtwim = new RelativeToWeekdayInMonthParser();
 	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
-	public void testEmpty() {
+	void testEmpty() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		rtwim.parse(2011, result, config);
@@ -45,7 +51,7 @@ public class RelativeToWeekdayInMonthParserTest {
 	}
 
 	@Test
-	public void testInvalid() {
+	void testInvalid() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToWeekdayInMonth rule = new RelativeToWeekdayInMonth();
@@ -63,7 +69,7 @@ public class RelativeToWeekdayInMonthParserTest {
 	}
 
 	@Test
-	public void testTueAfter2ndMondayJuly() {
+	void testTueAfter2ndMondayJuly() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToWeekdayInMonth rule = new RelativeToWeekdayInMonth();
@@ -81,7 +87,7 @@ public class RelativeToWeekdayInMonthParserTest {
 	}
 
 	@Test
-	public void testMonAfter4thMondayOctober() {
+	void testMonAfter4thMondayOctober() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToWeekdayInMonth rule = new RelativeToWeekdayInMonth();

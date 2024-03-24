@@ -15,10 +15,10 @@
  */
 package org.jollycar.tests.parsers;
 
+import org.jollycar.Holiday;
+
 import java.io.Serializable;
 import java.util.Comparator;
-
-import org.jollycar.Holiday;
 
 /**
  * Compares two {@link Holiday} instances upon their dates.

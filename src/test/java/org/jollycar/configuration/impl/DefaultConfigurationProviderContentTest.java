@@ -10,7 +10,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class DefaultConfigurationProviderContentTest {
+class DefaultConfigurationProviderContentTest {
 
 	private static final Set<String> KEYS_DEFAULT_CONFIG = new HashSet<>(Arrays.asList("manager.impl",
 			"manager.impl.jp","configuration.datasource.impl","parser.impl.org.jollycar.config.Fixed",
@@ -25,7 +25,7 @@ public class DefaultConfigurationProviderContentTest {
 	DefaultConfigurationProvider configurationProvider = new DefaultConfigurationProvider();
 
 	@Test
-	public void testPutConfiguration() {
+	void testPutConfiguration() {
 		Properties p = configurationProvider.getProperties();
 		assertFalse(p.isEmpty(), "Properties shouldn't be empty.");
 		assertEquals(KEYS_DEFAULT_CONFIG, p.keySet(), "Default properties are not as expected.");

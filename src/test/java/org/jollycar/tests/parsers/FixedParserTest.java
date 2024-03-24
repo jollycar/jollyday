@@ -16,13 +16,23 @@
 package org.jollycar.tests.parsers;
 
 import org.jollycar.Holiday;
-import org.jollycar.config.*;
+import org.jollycar.config.Fixed;
+import org.jollycar.config.Holidays;
+import org.jollycar.config.Month;
+import org.jollycar.config.MovingCondition;
+import org.jollycar.config.Weekday;
+import org.jollycar.config.With;
 import org.jollycar.parser.impl.FixedParser;
 import org.jollycar.util.CalendarUtil;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -31,13 +41,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Sven
  *
  */
-public class FixedParserTest {
+class FixedParserTest {
 
 	private FixedParser fixedParser = new FixedParser();
 	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
-	public void testFixedWithValidity() {
+	void testFixedWithValidity() {
 		Holidays h = createHolidays(createFixed(1, Month.JANUARY), createFixed(3, Month.MARCH),
 				createFixed(5, Month.MAY, 2011, null));
 		Set<Holiday> set = new HashSet<>();
@@ -46,7 +56,7 @@ public class FixedParserTest {
 	}
 
 	@Test
-	public void testFixedWithMoving() {
+	void testFixedWithMoving() {
 		Holidays h = createHolidays(
 				createFixed(8, Month.JANUARY, createMoving(Weekday.SATURDAY, With.PREVIOUS, Weekday.FRIDAY)),
 				createFixed(23, Month.JANUARY, createMoving(Weekday.SUNDAY, With.NEXT, Weekday.MONDAY)));
@@ -56,7 +66,7 @@ public class FixedParserTest {
 	}
 
 	@Test
-	public void testCyle2YearsInvalid() {
+	void testCyle2YearsInvalid() {
 		Fixed fixed = createFixed(4, Month.JANUARY);
 		fixed.setValidFrom(2010);
 		fixed.setEvery("2_YEARS");
@@ -67,7 +77,7 @@ public class FixedParserTest {
 	}
 
 	@Test
-	public void testCyle3Years() {
+	void testCyle3Years() {
 		Fixed fixed = createFixed(4, Month.JANUARY);
 		fixed.setValidFrom(2010);
 		fixed.setEvery("3_YEARS");
@@ -87,7 +97,7 @@ public class FixedParserTest {
 		}
 	}
 
-	public Holidays createHolidays(Fixed... fs) {
+	Holidays createHolidays(Fixed... fs) {
 		Holidays h = new Holidays();
 		h.getFixed().addAll(Arrays.asList(fs));
 		return h;
@@ -96,7 +106,7 @@ public class FixedParserTest {
 	/**
 	 * @return
 	 */
-	public Fixed createFixed(int day, Month m, MovingCondition... mc) {
+	Fixed createFixed(int day, Month m, MovingCondition... mc) {
 		Fixed f = new Fixed();
 		f.setDay(day);
 		f.setMonth(m);
@@ -104,14 +114,14 @@ public class FixedParserTest {
 		return f;
 	}
 
-	public Fixed createFixed(int day, Month m, Integer validFrom, Integer validUntil, MovingCondition... mc) {
+	Fixed createFixed(int day, Month m, Integer validFrom, Integer validUntil, MovingCondition... mc) {
 		Fixed f = createFixed(day, m, mc);
 		f.setValidFrom(validFrom);
 		f.setValidTo(validUntil);
 		return f;
 	}
 
-	public MovingCondition createMoving(Weekday substitute, With with, Weekday weekday) {
+	MovingCondition createMoving(Weekday substitute, With with, Weekday weekday) {
 		MovingCondition mc = new MovingCondition();
 		mc.setSubstitute(substitute);
 		mc.setWith(with);

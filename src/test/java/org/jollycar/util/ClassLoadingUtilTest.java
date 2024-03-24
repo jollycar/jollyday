@@ -24,24 +24,24 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @author sven
  *
  */
-public class ClassLoadingUtilTest {
+class ClassLoadingUtilTest {
 
 	ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
 
 	@Test
-	public void testGetClassloader() {
+	void testGetClassloader() {
 		assertSame(Thread.currentThread().getContextClassLoader(),
 				classLoadingUtil.getClassloader(),
 				"Expected the current threads classloader.");
 	}
 
 	@Test
-	public void testClassNotFound() throws ClassNotFoundException {
+	void testClassNotFound() throws ClassNotFoundException {
 		assertThrows(ClassNotFoundException.class, () -> classLoadingUtil.loadClass(""));
 	}
 
 	@Test
-	public void testClassloadingCorrect() throws Exception {
+	void testClassloadingCorrect() throws Exception {
 		assertSame(ClassLoadingUtil.class, classLoadingUtil.loadClass(ClassLoadingUtil.class.getName()));
 	}
 

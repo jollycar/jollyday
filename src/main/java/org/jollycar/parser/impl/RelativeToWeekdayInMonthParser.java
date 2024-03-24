@@ -15,14 +15,14 @@
  */
 package org.jollycar.parser.impl;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import org.jollycar.Holiday;
 import org.jollycar.HolidayType;
 import org.jollycar.config.Holidays;
 import org.jollycar.config.RelativeToWeekdayInMonth;
 import org.jollycar.config.When;
+
+import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * <p>

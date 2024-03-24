@@ -35,22 +35,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *      17.414<a/>
  * @author jmoreno
  */
-public class HolidayUYTest extends AbstractCountryTestBase {
+class HolidayUYTest extends AbstractCountryTestBase {
 
 	private HolidayManager holidayManager;
 
 	@BeforeEach
-	public void init() {
+	void init() {
 		holidayManager = HolidayManager.getInstance(ManagerParameters.create(HolidayCalendar.URUGUAY));
 	}
 
 	@Test
-	public void testManagerUYStructure() throws Exception {
+	void testManagerUYStructure() throws Exception {
 		validateCalendarData("uy", 2016);
 	}
 
 	@Test
-	public void testManagerUYLanding33EasternersMovingDaysWhenLanding33EasternersOnTuesday() {
+	void testManagerUYLanding33EasternersMovingDaysWhenLanding33EasternersOnTuesday() {
 		int year = 2016;
 		LocalDate landing33Easterners = LocalDate.of(year, 4, 18);
 		assertTrue(contains(landing33Easterners, holidayManager.getHolidays(year)),
@@ -58,7 +58,7 @@ public class HolidayUYTest extends AbstractCountryTestBase {
 	}
 
 	@Test
-	public void testManagerUYLanding33EasternersMovingDaysWhenLanding33EasternersOnThursday() {
+	void testManagerUYLanding33EasternersMovingDaysWhenLanding33EasternersOnThursday() {
 		int year = 2007;
 		LocalDate landing33Easterners = LocalDate.of(year, 4, 23);
 		assertTrue(contains(landing33Easterners, holidayManager.getHolidays(year)),
@@ -66,7 +66,7 @@ public class HolidayUYTest extends AbstractCountryTestBase {
 	}
 
 	@Test
-	public void testManagerUYRaceMovingDaysWhenRaceOnWednesday() {
+	void testManagerUYRaceMovingDaysWhenRaceOnWednesday() {
 		int year = 2016;
 		LocalDate race = LocalDate.of(year, 10, 10);
 		assertTrue(contains(race, holidayManager.getHolidays(year)),
@@ -74,7 +74,7 @@ public class HolidayUYTest extends AbstractCountryTestBase {
 	}
 
 	@Test
-	public void testManagerUYRaceMovingDaysWhenRaceOnFriday() {
+	void testManagerUYRaceMovingDaysWhenRaceOnFriday() {
 		int year = 2007;
 		LocalDate race = LocalDate.of(year, 10, 15);
 		assertTrue(contains(race, holidayManager.getHolidays(year)),
@@ -82,7 +82,7 @@ public class HolidayUYTest extends AbstractCountryTestBase {
 	}
 
 	@Test
-	public void testManagerUYLasPiedrasMovingDaysWhenLasPiedrasOnTuesday() {
+	void testManagerUYLasPiedrasMovingDaysWhenLasPiedrasOnTuesday() {
 		int year = 2016;
 		LocalDate lasPiedras = LocalDate.of(year, 5, 16);
 		assertTrue(contains(lasPiedras, holidayManager.getHolidays(year)),
@@ -90,7 +90,7 @@ public class HolidayUYTest extends AbstractCountryTestBase {
 	}
 
 	@Test
-	public void testManagerUYLasPiedrasMovingDaysWhenLasPiedrasOnFriday() {
+	void testManagerUYLasPiedrasMovingDaysWhenLasPiedrasOnFriday() {
 		int year = 2007;
 		LocalDate lasPiedras = LocalDate.of(year, 5, 21);
 		assertTrue(contains(lasPiedras, holidayManager.getHolidays(year)),

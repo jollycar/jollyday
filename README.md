@@ -10,7 +10,7 @@ add this to your `pom.xml`:
 <dependency>
     <groupId>org.jollycar</groupId>
     <artifactId>jollyday</artifactId>
-    <version>0.5.11-SNAPSHOT</version>
+    <version>X.X.X</version>
 </dependency>
 ```
 

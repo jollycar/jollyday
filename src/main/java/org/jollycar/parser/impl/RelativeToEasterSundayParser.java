@@ -15,14 +15,14 @@
  */
 package org.jollycar.parser.impl;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import org.jollycar.Holiday;
 import org.jollycar.config.HolidayType;
 import org.jollycar.config.Holidays;
 import org.jollycar.config.RelativeToEasterSunday;
 import org.jollycar.parser.AbstractHolidayParser;
+
+import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * This parser creates holidays relative to easter sunday.

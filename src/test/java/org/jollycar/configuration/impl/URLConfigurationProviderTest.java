@@ -15,45 +15,47 @@
  */
 package org.jollycar.configuration.impl;
 
-import java.util.Properties;
-
 import org.jollycar.configuration.ConfigurationProvider;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Properties;
 
-public class URLConfigurationProviderTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class URLConfigurationProviderTest {
 
 	private ConfigurationProvider urlConfigurationProvider = new URLConfigurationProvider();
 
 	@Test
-	public void testPutConfigurationWithPropertyNotSet() {
+	void testPutConfigurationWithPropertyNotSet() {
 		Properties props = urlConfigurationProvider.getProperties();
 		assertTrue(props.isEmpty());
 	}
 
 	@AfterEach
-	public void teardown() {
+	void teardown() {
 		System.clearProperty(ConfigurationProvider.CONFIG_URLS_PROPERTY);
 	}
 
 	@Test
-	public void testPutConfigurationWithPropertySetEmpty() {
+	void testPutConfigurationWithPropertySetEmpty() {
 		System.setProperty(ConfigurationProvider.CONFIG_URLS_PROPERTY, "");
 		Properties props = urlConfigurationProvider.getProperties();
 		assertTrue(props.isEmpty());
 	}
 
 	@Test
-	public void testPutConfigurationWithPropertyWithIllegalURL() {
+	void testPutConfigurationWithPropertyWithIllegalURL() {
 		System.setProperty(ConfigurationProvider.CONFIG_URLS_PROPERTY, "TestIllegalData");
 		Properties props = urlConfigurationProvider.getProperties();
 		assertTrue(props.isEmpty());
 	}
 
 	@Test
-	public void testPutConfigurationWithPropertyWithCorrectURL() {
+	void testPutConfigurationWithPropertyWithCorrectURL() {
 		System.setProperty(ConfigurationProvider.CONFIG_URLS_PROPERTY, "file:./src/test/resources/url.load.properties");
 		Properties props = urlConfigurationProvider.getProperties();
 		assertFalse(props.isEmpty());

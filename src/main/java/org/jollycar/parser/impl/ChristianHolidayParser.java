@@ -15,12 +15,12 @@
  */
 package org.jollycar.parser.impl;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import org.jollycar.Holiday;
 import org.jollycar.config.ChristianHoliday;
 import org.jollycar.config.Holidays;
+
+import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * This parser creates christian holidays for the given year relative to easter

@@ -16,27 +16,27 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class XMLValidationTest {
+class XMLValidationTest {
 
     private File schemaFile;
     private Validator validator;
 
     @BeforeEach
-    public void setUp() throws Exception {
-        schemaFile = new File("src/main/xsd/Holiday.xsd");
+    void setUp() throws Exception {
+        schemaFile = new File("src/main/resources/Holiday.xsd");
         validator = Validator.forLanguage(Languages.W3C_XML_SCHEMA_NS_URI);
         validator.setSchemaSource(new StreamSource(schemaFile));
     }
 
     @Test
-    public void testSchemaIsValid() throws Exception {
+    void testSchemaIsValid() throws Exception {
         assertTrue(schemaFile.exists(), "Schema file "+schemaFile+" does not exist.");
         final ValidationResult validationResult = validator.validateSchema();
         assertTrue(validationResult.isValid(), "Schema '"+ schemaFile +"' is not valid: "+validationResult.getProblems());
     }
 
     @Test
-    public void testHolidayFilesAreValid()throws Exception {
+    void testHolidayFilesAreValid()throws Exception {
         final Path holidaysFolder = Paths.get("src/main/resources/holidays/");
         Files.list(holidaysFolder).forEach(this::validateHolidayFile);
     }

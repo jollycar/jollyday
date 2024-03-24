@@ -19,14 +19,14 @@ import org.jollycar.tests.base.AbstractCountryTestBase;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-public class HolidayESTest extends AbstractCountryTestBase {
+class HolidayESTest extends AbstractCountryTestBase {
 
 	private static final String ISO_CODE = "es";
 	private static final int YEAR = 2010;
 
 	@Test
 	@Disabled
-	public void testManagerESStructure() {
+	void testManagerESStructure() {
 		validateCalendarData(ISO_CODE, YEAR);
 	}
 

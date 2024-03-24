@@ -15,15 +15,19 @@
  */
 package org.jollycar.parser;
 
-import static java.time.temporal.TemporalAdjusters.nextOrSame;
-import static java.time.temporal.TemporalAdjusters.previousOrSame;
-
-import org.jollycar.config.*;
+import org.jollycar.config.ChronologyType;
+import org.jollycar.config.Holiday;
+import org.jollycar.config.MoveableHoliday;
+import org.jollycar.config.MovingCondition;
+import org.jollycar.config.With;
 import org.jollycar.util.CalendarUtil;
 import org.jollycar.util.XMLUtil;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+
+import static java.time.temporal.TemporalAdjusters.nextOrSame;
+import static java.time.temporal.TemporalAdjusters.previousOrSame;
 
 /**
  * The abstract base class for all HolidayParser implementations.

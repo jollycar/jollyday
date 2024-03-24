@@ -1,8 +1,8 @@
 package org.jollycar.parameter;
 
-import java.util.Properties;
-
 import org.jollycar.ManagerParameter;
+
+import java.util.Properties;
 
 public abstract class BaseManagerParameter implements ManagerParameter {
 

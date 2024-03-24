@@ -1,9 +1,9 @@
 package org.jollycar.parameter;
 
+import org.jollycar.util.ResourceUtil;
+
 import java.net.URL;
 import java.util.Properties;
-
-import org.jollycar.util.ResourceUtil;
 
 public class CalendarPartManagerParameter extends BaseManagerParameter {
 

@@ -34,13 +34,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Sven
  *
  */
-public class EthiopianOrthodoxHolidayParserTest {
+class EthiopianOrthodoxHolidayParserTest {
 
 	private EthiopianOrthodoxHolidayParser parser = new EthiopianOrthodoxHolidayParser();
 	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
-	public void testEmpty() {
+	void testEmpty() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		parser.parse(2010, holidays, config);
@@ -48,7 +48,7 @@ public class EthiopianOrthodoxHolidayParserTest {
 	}
 
 	@Test
-	public void testAllHolidays() {
+	void testAllHolidays() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		config.getEthiopianOrthodoxHoliday().add(createHoliday(EthiopianOrthodoxHolidayType.ENKUTATASH));

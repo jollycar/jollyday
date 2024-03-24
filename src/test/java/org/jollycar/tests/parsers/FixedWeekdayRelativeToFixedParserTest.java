@@ -16,7 +16,13 @@
 package org.jollycar.tests.parsers;
 
 import org.jollycar.Holiday;
-import org.jollycar.config.*;
+import org.jollycar.config.Fixed;
+import org.jollycar.config.FixedWeekdayRelativeToFixed;
+import org.jollycar.config.Holidays;
+import org.jollycar.config.Month;
+import org.jollycar.config.Weekday;
+import org.jollycar.config.When;
+import org.jollycar.config.Which;
 import org.jollycar.parser.impl.FixedWeekdayRelativeToFixedParser;
 import org.jollycar.util.CalendarUtil;
 import org.junit.jupiter.api.Test;
@@ -34,13 +40,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Sven
  *
  */
-public class FixedWeekdayRelativeToFixedParserTest {
+class FixedWeekdayRelativeToFixedParserTest {
 
 	private FixedWeekdayRelativeToFixedParser fwrtf = new FixedWeekdayRelativeToFixedParser();
 	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
-	public void testEmpty() {
+	void testEmpty() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		fwrtf.parse(2011, result, config);
@@ -48,7 +54,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testInvalid() {
+	void testInvalid() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
@@ -66,7 +72,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testParserFirstBefore() {
+	void testParserFirstBefore() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
@@ -84,7 +90,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testParserSecondBefore() {
+	void testParserSecondBefore() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
@@ -102,7 +108,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testParserThirdAfter() {
+	void testParserThirdAfter() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
@@ -120,7 +126,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testParserFourthAfter() {
+	void testParserFourthAfter() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
@@ -138,7 +144,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testParserFirstClosest() {
+	void testParserFirstClosest() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
@@ -156,7 +162,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testParserSecondClosest() {
+	void testParserSecondClosest() {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
@@ -175,7 +181,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testClosestAdjusterSameMonth() {
+	void testClosestAdjusterSameMonth() {
 		TemporalAdjuster adjuster = FixedWeekdayRelativeToFixedParser.closest(DayOfWeek.MONDAY);
 		LocalDate date = calendarUtil.create(2018, 12, 1); // Saturday
 		LocalDate expectedDate = calendarUtil.create(2018, 12, 3); // Monday
@@ -183,7 +189,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testClosestAdjusterPreviousMonth() {
+	void testClosestAdjusterPreviousMonth() {
 		TemporalAdjuster adjuster = FixedWeekdayRelativeToFixedParser.closest(DayOfWeek.FRIDAY);
 		LocalDate date = calendarUtil.create(2019, 6, 3); // Monday
 		LocalDate expectedDate = calendarUtil.create(2019, 5, 31); // Friday
@@ -191,7 +197,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testClosestAdjusterNextMonth() {
+	void testClosestAdjusterNextMonth() {
 		TemporalAdjuster adjuster = FixedWeekdayRelativeToFixedParser.closest(DayOfWeek.MONDAY);
 		LocalDate date = calendarUtil.create(2019, 6, 30); // Sunday
 		LocalDate expectedDate = calendarUtil.create(2019, 7, 1); // Monday
@@ -199,7 +205,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testClosestAdjusterNextYear() {
+	void testClosestAdjusterNextYear() {
 		TemporalAdjuster adjuster = FixedWeekdayRelativeToFixedParser.closest(DayOfWeek.WEDNESDAY);
 		LocalDate date = calendarUtil.create(2019, 12, 31); // Tuesday
 		LocalDate expectedDate = calendarUtil.create(2020, 1, 1); // Wednesday

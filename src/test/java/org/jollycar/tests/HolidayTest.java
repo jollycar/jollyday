@@ -15,14 +15,22 @@
  */
 package org.jollycar.tests;
 
-import org.jollycar.*;
+import org.jollycar.CalendarHierarchy;
+import org.jollycar.Holiday;
+import org.jollycar.HolidayCalendar;
+import org.jollycar.HolidayManager;
+import org.jollycar.HolidayType;
 import org.jollycar.util.CalendarUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -30,14 +38,26 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static java.time.Month.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static java.time.Month.APRIL;
+import static java.time.Month.AUGUST;
+import static java.time.Month.DECEMBER;
+import static java.time.Month.FEBRUARY;
+import static java.time.Month.JANUARY;
+import static java.time.Month.JULY;
+import static java.time.Month.NOVEMBER;
+import static java.time.Month.SEPTEMBER;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * @author Sven
  *
  */
-public class HolidayTest {
+class HolidayTest {
 
 	private final static Logger LOG = Logger.getLogger(HolidayTest.class
 			.getName());
@@ -91,7 +111,7 @@ public class HolidayTest {
 	private Locale defaultLocale;
 
 	@BeforeEach
-	public void init() {
+	void init() {
 		System.setProperty("org.jollycar.config.urls",
 				"file:./src/test/resources/test.app.properties");
 		defaultLocale = Locale.getDefault();
@@ -99,18 +119,18 @@ public class HolidayTest {
 	}
 
 	@AfterEach
-	public void destroy() {
+	void destroy() {
 		Locale.setDefault(defaultLocale);
 		System.clearProperty("org.jollycar.config.urls");
 	}
 
 	@Test
-	public void testMissingCountry() throws Exception {
+	void testMissingCountry() throws Exception {
 		assertThrows(IllegalStateException.class, () -> HolidayManager.getInstance("XXX"));
 	}
 
 	@Test
-	public void testBaseStructure() throws Exception {
+	void testBaseStructure() throws Exception {
 		HolidayManager m = HolidayManager.getInstance("test");
 		CalendarHierarchy h = m.getCalendarHierarchy();
 		assertEquals("test", h.getId(), "Wrong id.");
@@ -125,7 +145,7 @@ public class HolidayTest {
 	}
 
 	@Test
-	public void testHierarchyDescriptionsDefined() {
+	void testHierarchyDescriptionsDefined() {
 		for (HolidayCalendar c : HolidayCalendar.values()) {
 			HolidayManager m = HolidayManager.getInstance(c);
 			assertNotUndefined(c, m.getCalendarHierarchy());
@@ -143,7 +163,7 @@ public class HolidayTest {
 	}
 
 	@Test
-	public void testIsHolidayPerformanceMultithreaded() throws Exception {
+	void testIsHolidayPerformanceMultithreaded() throws Exception {
 		LocalDate date = LocalDate.of(2010, 1, 1);
 		final AtomicLong count = new AtomicLong(0);
 		final AtomicLong sumDuration = new AtomicLong(0);
@@ -169,7 +189,7 @@ public class HolidayTest {
 	}
 
 	@Test
-	public void testCalendarChronology() throws Exception {
+	void testCalendarChronology() throws Exception {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.YEAR, 2010);
@@ -181,7 +201,7 @@ public class HolidayTest {
 	}
 
 	@Test
-	public void testBaseDates() throws Exception {
+	void testBaseDates() throws Exception {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010);
 		assertNotNull(holidays);
@@ -200,7 +220,7 @@ public class HolidayTest {
 	}
 
 	@Test
-	public void testLevel1() throws Exception {
+	void testLevel1() throws Exception {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level1");
 		assertNotNull(holidays);
@@ -208,7 +228,7 @@ public class HolidayTest {
 	}
 
 	@Test
-	public void testLevel2() throws Exception {
+	void testLevel2() throws Exception {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level1", "level2");
 		assertNotNull(holidays);
@@ -216,7 +236,7 @@ public class HolidayTest {
 	}
 
 	@Test
-	public void testLevel11() throws Exception {
+	void testLevel11() throws Exception {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level11");
 		assertNotNull(holidays);
@@ -224,12 +244,12 @@ public class HolidayTest {
 	}
 
 	@Test
-	public void testFail() throws Exception {
+	void testFail() throws Exception {
 		assertThrows(IllegalArgumentException.class, () -> HolidayManager.getInstance("test_fail"));
 	}
 
 	@Test
-	public void testAllAvailableManagers() throws Exception {
+	void testAllAvailableManagers() throws Exception {
 		Set<String> supportedCalendarCodes = HolidayManager
 				.getSupportedCalendarCodes();
 		assertNotNull(supportedCalendarCodes);
@@ -241,7 +261,7 @@ public class HolidayTest {
 	}
 
 	@Test
-	public void testHolidayDescription() {
+	void testHolidayDescription() {
 		Holiday h = new Holiday(LocalDate.of(2011, 2, 2), "CHRISTMAS",
 				HolidayType.OFFICIAL_HOLIDAY);
 		assertEquals("Weihnachten",
@@ -256,7 +276,7 @@ public class HolidayTest {
 	}
 
 	@Test
-	public void testHolidayEquals() {
+	void testHolidayEquals() {
 		Holiday h1 = new Holiday(LocalDate.of(2011, 2, 2), "CHRISTMAS",
 				HolidayType.OFFICIAL_HOLIDAY);
 		assertTrue(h1.equals(h1), "Wrong equals implementation");

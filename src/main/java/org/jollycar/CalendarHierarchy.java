@@ -15,11 +15,11 @@
  */
 package org.jollycar;
 
+import org.jollycar.util.ResourceUtil;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
-import org.jollycar.util.ResourceUtil;
 
 /**
  * Bean class for describing the configuration hierarchy.

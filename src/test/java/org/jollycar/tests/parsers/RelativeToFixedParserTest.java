@@ -16,7 +16,12 @@
 package org.jollycar.tests.parsers;
 
 import org.jollycar.Holiday;
-import org.jollycar.config.*;
+import org.jollycar.config.Fixed;
+import org.jollycar.config.Holidays;
+import org.jollycar.config.Month;
+import org.jollycar.config.RelativeToFixed;
+import org.jollycar.config.Weekday;
+import org.jollycar.config.When;
 import org.jollycar.parser.impl.RelativeToFixedParser;
 import org.jollycar.util.CalendarUtil;
 import org.junit.jupiter.api.Test;
@@ -31,13 +36,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Sven
  *
  */
-public class RelativeToFixedParserTest {
+class RelativeToFixedParserTest {
 
 	private RelativeToFixedParser rtfp = new RelativeToFixedParser();
 	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
-	public void testEmpty() {
+	void testEmpty() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		rtfp.parse(2010, holidays, config);
@@ -45,7 +50,7 @@ public class RelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testInvalid() {
+	void testInvalid() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToFixed rule = new RelativeToFixed();
@@ -56,7 +61,7 @@ public class RelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testWeekday() {
+	void testWeekday() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToFixed rule = new RelativeToFixed();
@@ -73,7 +78,7 @@ public class RelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testSameWeekday() {
+	void testSameWeekday() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToFixed rule = new RelativeToFixed();
@@ -90,7 +95,7 @@ public class RelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testNumberOfDays() {
+	void testNumberOfDays() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToFixed rule = new RelativeToFixed();

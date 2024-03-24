@@ -34,13 +34,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author svdi1de
  *
  */
-public class FixedWeekdayBetweenFixedParserTest extends FixedParserTest {
+class FixedWeekdayBetweenFixedParserTest extends FixedParserTest {
 
 	private FixedWeekdayBetweenFixedParser parser = new FixedWeekdayBetweenFixedParser();
 	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
-	public void testEmpty() {
+	void testEmpty() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		parser.parse(2010, holidays, config);
@@ -48,7 +48,7 @@ public class FixedWeekdayBetweenFixedParserTest extends FixedParserTest {
 	}
 
 	@Test
-	public void testInvalid() {
+	void testInvalid() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayBetweenFixed e = new FixedWeekdayBetweenFixed();
@@ -59,7 +59,7 @@ public class FixedWeekdayBetweenFixedParserTest extends FixedParserTest {
 	}
 
 	@Test
-	public void testWednesday() {
+	void testWednesday() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayBetweenFixed e = new FixedWeekdayBetweenFixed();

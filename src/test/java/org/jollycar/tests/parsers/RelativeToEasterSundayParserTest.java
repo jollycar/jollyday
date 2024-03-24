@@ -13,19 +13,19 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RelativeToEasterSundayParserTest {
+class RelativeToEasterSundayParserTest {
 
 	RelativeToEasterSundayParser parser = new RelativeToEasterSundayParser();
 	Set<Holiday> holidays = new HashSet<>();
 	CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
-	public void testForEasterMonday() {
+	void testForEasterMonday() {
 		doTest(2013, 1);
 	}
 
 	@Test
-	public void testForEasterSaturday() {
+	void testForEasterSaturday() {
 		doTest(2013, -1);
 	}
 

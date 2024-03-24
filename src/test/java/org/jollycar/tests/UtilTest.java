@@ -26,19 +26,26 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import static java.time.Month.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static java.time.Month.DECEMBER;
+import static java.time.Month.JANUARY;
+import static java.time.Month.MARCH;
+import static java.time.Month.OCTOBER;
+import static java.time.Month.SEPTEMBER;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Sven
  *
  */
-public class UtilTest {
+class UtilTest {
 
 	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
-	public void testWeekend() {
+	void testWeekend() {
 		LocalDate dateFriday = LocalDate.of(2010, MARCH, 12);
 		LocalDate dateSaturday = LocalDate.of(2010, MARCH, 13);
 		LocalDate dateSunday = LocalDate.of(2010, MARCH, 14);
@@ -50,7 +57,7 @@ public class UtilTest {
 	}
 
 	@Test
-	public void testCalendarIslamicNewYear() {
+	void testCalendarIslamicNewYear() {
 		Set<LocalDate> expected = new HashSet<>();
 		expected.add(LocalDate.of(2008, JANUARY, 10));
 		expected.add(LocalDate.of(2008, DECEMBER, 29));
@@ -61,7 +68,7 @@ public class UtilTest {
 	}
 
 	@Test
-	public void testCalendarIslamicAschura2008() {
+	void testCalendarIslamicAschura2008() {
 		Set<LocalDate> expected = new HashSet<>();
 		expected.add(LocalDate.of(2008, JANUARY, 19));
 		Set<LocalDate> holidays = calendarUtil.getIslamicHolidaysInGregorianYear(2008, 1, 10);
@@ -71,7 +78,7 @@ public class UtilTest {
 	}
 
 	@Test
-	public void testCalendarIslamicAschura2009() {
+	void testCalendarIslamicAschura2009() {
 		Set<LocalDate> expected = new HashSet<>();
 		expected.add(LocalDate.of(2009, JANUARY, 7));
 		expected.add(LocalDate.of(2009, DECEMBER, 27));
@@ -82,7 +89,7 @@ public class UtilTest {
 	}
 
 	@Test
-	public void testCalendarIslamicIdAlFitr2008() {
+	void testCalendarIslamicIdAlFitr2008() {
 		Set<LocalDate> expected = new HashSet<>();
 		expected.add(LocalDate.of(2008, OCTOBER, 1));
 		Set<LocalDate> holidays = calendarUtil.getIslamicHolidaysInGregorianYear(2008, 10, 1);
@@ -92,7 +99,7 @@ public class UtilTest {
 	}
 
 	@Test
-	public void testCalendarIslamicIdAlFitr2009() {
+	void testCalendarIslamicIdAlFitr2009() {
 		Set<LocalDate> expected = new HashSet<>();
 		expected.add(LocalDate.of(2009, SEPTEMBER, 20));
 		Set<LocalDate> holidays = calendarUtil.getIslamicHolidaysInGregorianYear(2009, 10, 1);
@@ -102,72 +109,72 @@ public class UtilTest {
 	}
 
 	@Test
-	public void testEaster2000() {
+	void testEaster2000() {
 		checkEasterDate(2000, 4, 23);
 	}
 
 	@Test
-	public void testEaster2001() {
+	void testEaster2001() {
 		checkEasterDate(2001, 4, 15);
 	}
 
 	@Test
-	public void testEaster2002() {
+	void testEaster2002() {
 		checkEasterDate(2002, 3, 31);
 	}
 
 	@Test
-	public void testEaster2003() {
+	void testEaster2003() {
 		checkEasterDate(2003, 4, 20);
 	}
 
 	@Test
-	public void testEaster2004() {
+	void testEaster2004() {
 		checkEasterDate(2004, 4, 11);
 	}
 
 	@Test
-	public void testEaster2005() {
+	void testEaster2005() {
 		checkEasterDate(2005, 3, 27);
 	}
 
 	@Test
-	public void testEaster2006() {
+	void testEaster2006() {
 		checkEasterDate(2006, 4, 16);
 	}
 
 	@Test
-	public void testEaster2007() {
+	void testEaster2007() {
 		checkEasterDate(2007, 4, 8);
 	}
 
 	@Test
-	public void testEaster2008() {
+	void testEaster2008() {
 		checkEasterDate(2008, 3, 23);
 	}
 
 	@Test
-	public void testEaster2009() {
+	void testEaster2009() {
 		checkEasterDate(2009, 4, 12);
 	}
 
 	@Test
-	public void testEaster2010() {
+	void testEaster2010() {
 		checkEasterDate(2010, 4, 4);
 	}
 
 	@Test
-	public void testEaster2011() {
+	void testEaster2011() {
 		checkEasterDate(2011, 4, 24);
 	}
 
 	@Test
-	public void testEaster2012() {
+	void testEaster2012() {
 		checkEasterDate(2012, 4, 8);
 	}
 
 	@Test
-	public void testEaster2013() {
+	void testEaster2013() {
 		checkEasterDate(2013, 3, 31);
 	}
 
@@ -178,21 +185,21 @@ public class UtilTest {
 	}
 
 	@Test
-	public void testCalendarUtilEasterJulian() {
+	void testCalendarUtilEasterJulian() {
 		assertEquals(LocalDate.of(1583, 4, 10),
 				calendarUtil.getEasterSunday(1583),
 				"Wrong easter date.");
 	}
 
 	@Test
-	public void testCalendarUtilEasterGregorian() {
+	void testCalendarUtilEasterGregorian() {
 		assertEquals(LocalDate.of(1584, 4, 1),
 				calendarUtil.getEasterSunday(1584),
 				"Wrong easter date.");
 	}
 
 	@Test
-	public void testUmlaut() {
+	void testUmlaut() {
 		final LocalDate aDate = LocalDate.of(2010, JANUARY, 6);
 		final HolidayManager aMgr = HolidayManager.getInstance(HolidayCalendar.AUSTRIA);
 		final Set<Holiday> hs = aMgr.getHolidays(aDate, aDate.plusDays(1));

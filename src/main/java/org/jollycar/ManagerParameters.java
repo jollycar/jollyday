@@ -1,11 +1,11 @@
 package org.jollycar;
 
+import org.jollycar.parameter.CalendarPartManagerParameter;
+import org.jollycar.parameter.UrlManagerParameter;
+
 import java.net.URL;
 import java.util.Locale;
 import java.util.Properties;
-
-import org.jollycar.parameter.CalendarPartManagerParameter;
-import org.jollycar.parameter.UrlManagerParameter;
 
 public final class ManagerParameters {
 

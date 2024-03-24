@@ -11,10 +11,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.io.InputStream;
 import java.net.URL;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class XmlFileDataSourceTest {
+class XmlFileDataSourceTest {
 
     @Mock
     XMLUtil xmlUtil;
@@ -23,7 +27,7 @@ public class XmlFileDataSourceTest {
     private XmlFileDataSource xmlFileDataSource;
 
     @Test
-    public void testGetConfiguration() throws Exception {
+    void testGetConfiguration() throws Exception {
         final ManagerParameter managerParameter = mock(ManagerParameter.class);
         URL resourceUrl = new URL("http://www.google.de");
         when(managerParameter.createResourceUrl()).thenReturn(resourceUrl);

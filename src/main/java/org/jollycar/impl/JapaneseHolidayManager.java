@@ -15,12 +15,12 @@
  */
 package org.jollycar.impl;
 
+import org.jollycar.Holiday;
+import org.jollycar.HolidayType;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.jollycar.Holiday;
-import org.jollycar.HolidayType;
 
 /**
  * <p>

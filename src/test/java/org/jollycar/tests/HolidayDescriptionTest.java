@@ -20,7 +20,11 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.ResourceBundle;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,10 +33,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author sven
  *
  */
-public class HolidayDescriptionTest {
+class HolidayDescriptionTest {
 
 	@Test
-	public void testHolidayDescriptionsCompleteness() throws Exception {
+	void testHolidayDescriptionsCompleteness() throws Exception {
 
 		File folder = new File("src/main/resources/descriptions");
 		assertTrue(folder.isDirectory());
