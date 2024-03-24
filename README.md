@@ -17,3 +17,6 @@ add this to your `pom.xml`:
 ## License
 
 [Apache License, Version 2.0](LICENSE.md)
+
+## ARCHIVED PROJECT
+# USE https://github.com/focus-shift/jollyday
